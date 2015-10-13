@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Myapp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+ <div style="position:absolute; right:80px; top:20px; background-color:yellow;">
+    <% if user_signed_in? -%>
+ <%= link_to "Log out", destroy_session_path(:user), :method => :delete %>
+ <% end %>
+
+   </div>
+   <div>
+   	<% if can? :update, @product %>
+  <%= link_to "Edit", edit_product_path(@product) %>
+<% end %>
+   </div>
+
+
+<%= yield %>
+
+</body>
+</html>
